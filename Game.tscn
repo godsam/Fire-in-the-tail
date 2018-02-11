@@ -39,6 +39,17 @@ margin/top = 0.0
 margin/right = 256.0
 margin/bottom = 32.0
 
+[node name="Panel" type="Panel" parent="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 32.0
+
 [connection signal="timeout" from="T1" to="." method="_on_T1_timeout"]
 
 [connection signal="timeout" from="T2" to="." method="_on_T2_timeout"]

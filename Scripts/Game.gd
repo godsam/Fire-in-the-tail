@@ -29,7 +29,32 @@ func _ready():
 	p2.get_node("Sprite").set_texture(texture2) # Carrega textura
 	p2.connect("morreu",p2.get_parent(),"p2morreu")
 	
+	cenario()
+	
 	set_process(true)
+
+func cenario():
+	var i = 24
+	var j = 26
+	var alt = false
+	
+	while i < 256:
+		j = 26
+		
+		while j < 224:
+			if (i == 24) or (j == 26 and i <= 232) or (i <= 232 and j >= 216) or ( i >= 232 and i < 233 and j < 224):
+				gera_muro(i,j)
+			
+			j += 14
+			
+			if alt:
+				j += 4
+				alt = false
+			else:
+				alt = true
+		
+		i += 16
+	
 
 func gera_muro(i,j):
 	var wall1 = wall.instance()
