@@ -11,8 +11,16 @@ var tm1 = true
 var tm2 = true
 var p1vivo = true
 var p2vivo = true
+var p1pontos = 0
+var p2pontos = 0
+var jogando = false
 
 func _ready():
+	carrega_jogador()
+	cenario()
+	set_process(true)
+
+func carrega_jogador():
 	# Carrega jogador 1
 	p1 = player.instance()
 	add_child(p1)
@@ -20,6 +28,7 @@ func _ready():
 	p1.player = 1
 	p1.get_node("Sprite").set_texture(texture1) # Carrega textura
 	p1.connect("morreu",p1.get_parent(),"p1morreu")
+	p1vivo = true
 	
 	# Carrega jogador 2
 	p2 = player.instance()
@@ -28,10 +37,9 @@ func _ready():
 	p2.player = 2
 	p2.get_node("Sprite").set_texture(texture2) # Carrega textura
 	p2.connect("morreu",p2.get_parent(),"p2morreu")
+	p2vivo = true
 	
-	cenario()
-	
-	set_process(true)
+	jogando = true
 
 func cenario():
 	var i = 24
@@ -62,13 +70,24 @@ func gera_muro(i,j):
 	wall1.set_pos(Vector2(i,j))
 
 func p1morreu():
-	p1vivo = false
+	if p1vivo:
+		p2pontos += 1
+		get_node("Control/P2pontos").set_text("P2: " + str(p2pontos))
+		p1vivo = false
+		jogando = false
+		p2vivo = false
+		get_node("Timer").start()
 	
 func p2morreu():
-	p2vivo = false
+	if p2vivo:
+		p1pontos += 1
+		get_node("Control/P1pontos").set_text("P1: " + str(p1pontos))
+		p2vivo = false
+		jogando = false
+		p1vivo = false
+		get_node("Timer").start()
 
 func _process(delta):
-	
 	if p1vivo:
 		if p1.movendo and tm1: # Gerar morte p1
 			var morte1 = premorte.instance()
@@ -90,3 +109,8 @@ func _on_T1_timeout():
 
 func _on_T2_timeout():
 	tm2 = true
+
+func _on_Timer_timeout():
+	get_tree().call_group(0,"players","elimina")
+	
+	carrega_jogador()

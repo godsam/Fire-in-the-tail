@@ -59,3 +59,6 @@ func _process(delta):
 func morte(): # Sinal de morte do jogador e elimina o objeto da memóra
 	emit_signal("morreu")
 	queue_free()
+
+func elimina():
+	queue_free()
