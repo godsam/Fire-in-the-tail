@@ -5,6 +5,7 @@ var vel = 80
 var dir = Vector2()
 var pmorte = Vector2()
 var movendo = false
+var rigido = true
 
 signal morreu
 
@@ -14,6 +15,9 @@ func _ready():
 func _process(delta):
 	dir = Vector2()
 	movendo = false
+	
+	if is_colliding():
+		print("Aleluia")
 	
 	if player == 1: # Movimentação do player 1
 		if Input.is_action_pressed("play1r"):
@@ -33,7 +37,7 @@ func _process(delta):
 			pmorte = get_node("PosU").get_global_pos()
 			movendo = true
 		
-		set_global_pos(get_global_pos() + dir * vel * delta)
+		move(dir * vel * delta)
 		
 	elif player == 2: # Movimentação do player 2
 		if Input.is_action_pressed("play2r"):
@@ -53,7 +57,7 @@ func _process(delta):
 			pmorte = get_node("PosU").get_global_pos()
 			movendo = true
 		
-		set_global_pos(get_global_pos() + dir * vel * delta)
+		move(dir * vel * delta)
 
 func morte(): # Sinal de morte do jogador e elimina o objeto da memóra
 	emit_signal("morreu")

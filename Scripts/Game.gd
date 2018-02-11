@@ -60,6 +60,7 @@ func p2morreu():
 	p2vivo = false
 
 func _process(delta):
+	
 	if p1vivo:
 		if p1.movendo and tm1: # Gerar morte p1
 			var morte1 = premorte.instance()
@@ -67,6 +68,7 @@ func _process(delta):
 			morte1.set_global_pos(p1.pmorte)
 			get_node("T1").start()
 			tm1 = false
+		print(p1.is_colliding())
 	
 	if p2vivo:
 		if p2.movendo and tm2: # Gerar morte p2
