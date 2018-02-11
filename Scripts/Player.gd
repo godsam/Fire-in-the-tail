@@ -34,6 +34,7 @@ func _process(delta):
 			movendo = true
 		
 		set_global_pos(get_global_pos() + dir * vel * delta)
+		
 	elif player == 2: # Movimentação do player 2
 		if Input.is_action_pressed("play2r"):
 			dir = Vector2(1,0)
@@ -54,6 +55,6 @@ func _process(delta):
 		
 		set_global_pos(get_global_pos() + dir * vel * delta)
 
-func morte():
+func morte(): # Sinal de morte do jogador e elimina o objeto da memóra
 	emit_signal("morreu")
 	queue_free()
