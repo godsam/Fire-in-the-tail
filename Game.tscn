@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
+
+[node name="Game" type="Node"]
+
+script/script = ExtResource( 1 )
+
+[node name="PosP1" type="Position2D" parent="."]
+
+transform/pos = Vector2( 85.3186, 522.992 )
+
+[node name="PosP2" type="Position2D" parent="."]
+
+transform/pos = Vector2( 719.114, 73.1302 )
+
+[node name="T1" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="T2" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="T1" to="." method="_on_T1_timeout"]
+
+[connection signal="timeout" from="T2" to="." method="_on_T2_timeout"]
+
+
