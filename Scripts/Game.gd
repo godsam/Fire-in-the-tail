@@ -29,23 +29,6 @@ func _ready():
 	p2.get_node("Sprite").set_texture(texture2) # Carrega textura
 	p2.connect("morreu",p2.get_parent(),"p2morreu")
 	
-	# Preenche a lateral da tela com muro
-	var i = 16
-	while i < 800:
-		var j = 16
-		if (i == 16 or (i >= 784 and i < 800)):
-			gera_muro(i,j)
-		
-		while j < 600:
-			if (i == 16 or (i >= 784 and i < 800)):
-				gera_muro(i,j)
-			
-			if (j == 16 or (j >= 584 and j < 600)):
-				gera_muro(i,j)
-			
-			j += 16
-		i += 16
-	
 	set_process(true)
 
 func gera_muro(i,j):
@@ -68,7 +51,6 @@ func _process(delta):
 			morte1.set_global_pos(p1.pmorte)
 			get_node("T1").start()
 			tm1 = false
-		print(p1.is_colliding())
 	
 	if p2vivo:
 		if p2.movendo and tm2: # Gerar morte p2

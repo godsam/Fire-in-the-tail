@@ -16,9 +16,6 @@ func _process(delta):
 	dir = Vector2()
 	movendo = false
 	
-	if is_colliding():
-		print("Aleluia")
-	
 	if player == 1: # Movimentação do player 1
 		if Input.is_action_pressed("play1r"):
 			dir = Vector2(1,0)
