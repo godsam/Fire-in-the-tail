@@ -3,8 +3,8 @@ extends Node
 var player = preload("res://Player.tscn") # Carrega cena player na memória
 var premorte = preload("res://Morte.tscn") # Carrega cena morte na memória
 var wall = preload("res://Wall.tscn") # Carrega moro na memória
-var texture1 = preload("res://Resorces/player1.tex") # Textura do player 1
-var texture2 = preload("res://Resorces/player2.tex") # Textura do player 2
+#var texture1 = preload("res://Resorces/player1.tex") # Textura do player 1
+#var texture2 = preload("res://Resorces/player2.tex") # Textura do player 2
 var p1
 var p2
 var tm1 = true
@@ -26,7 +26,7 @@ func carrega_jogador():
 	add_child(p1)
 	p1.set_global_pos(get_node("PosP1").get_global_pos())
 	p1.player = 1
-	p1.get_node("Sprite").set_texture(texture1) # Carrega textura
+	#p1.get_node("Sprite").set_texture(texture1) # Carrega textura
 	p1.connect("morreu",p1.get_parent(),"p1morreu")
 	p1vivo = true
 	
@@ -35,7 +35,7 @@ func carrega_jogador():
 	add_child(p2)
 	p2.set_global_pos(get_node("PosP2").get_global_pos())
 	p2.player = 2
-	p2.get_node("Sprite").set_texture(texture2) # Carrega textura
+	#p2.get_node("Sprite").set_texture(texture2) # Carrega textura
 	p2.connect("morreu",p2.get_parent(),"p2morreu")
 	p2vivo = true
 	
